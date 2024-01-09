@@ -1,0 +1,31 @@
+{
+  "name": "part3_phonebook_backend",
+  "version": "1.0.0",
+  "description": "This is application which cover exercises of back end part of phone book application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "\"no test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuwaninfo/part3_phonebook_backend.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Nuwan Fernando",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuwaninfo/part3_phonebook_backend/issues"
+  },
+  "homepage": "https://github.com/nuwaninfo/part3_phonebook_backend#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
