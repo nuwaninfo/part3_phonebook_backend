@@ -60,6 +60,18 @@ app.use(express.json());
 app.post("/api/persons", (request, response) => {
   const body = request.body;
 
+  if (!body.name || !body.number) {
+    return response.status(400).json({ error: "name or number is missing" });
+  }
+
+  const matchingObjects = persons.filter(
+    (obj) => obj["name"].toLowerCase() === body.name.toLowerCase()
+  );
+
+  if (matchingObjects.length > 0) {
+    return response.status(400).json({ error: "name already exists" });
+  }
+
   const randomId = Math.floor(Math.random() * 10000) + 5;
 
   const person = {
