@@ -26,7 +26,17 @@ let persons = [
 ];
 
 app.use(express.json());
-app.use(morgan("tiny"));
+
+morgan.token("reqbody", function (request, response) {
+  console.log(Object.keys(request.body).length === 0);
+  return Object.keys(request.body).length !== 0
+    ? JSON.stringify(request.body)
+    : null;
+});
+
+app.use(
+  morgan(":method :url :status :res[content-length] :response-time ms :reqbody")
+);
 
 app.get("/api/info", function (request, response) {
   const numOfPersons = `<p>Phonebook has info for ${persons.length} people</p>`;
