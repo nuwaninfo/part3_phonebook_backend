@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
 let persons = [
@@ -23,6 +24,9 @@ let persons = [
     number: "39-23-6423122",
   },
 ];
+
+app.use(express.json());
+app.use(morgan("tiny"));
 
 app.get("/api/info", function (request, response) {
   const numOfPersons = `<p>Phonebook has info for ${persons.length} people</p>`;
@@ -53,8 +57,6 @@ app.delete("/api/persons/:id", (request, response) => {
 
   response.status(204).end();
 });
-
-app.use(express.json());
 
 // Add a person
 app.post("/api/persons", (request, response) => {
