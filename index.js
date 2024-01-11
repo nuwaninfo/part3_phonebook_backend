@@ -28,7 +28,6 @@ let persons = [
 app.use(express.json());
 
 morgan.token("reqbody", function (request, response) {
-  console.log(Object.keys(request.body).length === 0);
   return Object.keys(request.body).length !== 0
     ? JSON.stringify(request.body)
     : null;
