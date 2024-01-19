@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
 const Person = require("./models/person");
 
-let persons = [
+/*let persons = [
   {
     id: 1,
     name: "Arto Hellas",
@@ -26,7 +27,7 @@ let persons = [
     number: "39-23-6423122",
   },
 ];
-
+*/
 app.use(express.json());
 app.use(cors());
 app.use(express.static("dist"));
@@ -48,7 +49,9 @@ app.get("/api/info", function (request, response) {
 });
 
 app.get("/api/persons", (request, response) => {
-  response.json(persons);
+  Person.find({}).then((result) => {
+    response.json(result);
+  });
 });
 
 // Get a singl person information
