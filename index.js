@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const Person = require("./models/person");
 
-/*let persons = [
+let persons = [
   {
     id: 1,
     name: "Arto Hellas",
@@ -27,7 +27,7 @@ const Person = require("./models/person");
     number: "39-23-6423122",
   },
 ];
-*/
+
 app.use(express.json());
 app.use(cors());
 app.use(express.static("dist"));
@@ -82,7 +82,7 @@ app.post("/api/persons", (request, response) => {
     return response.status(400).json({ error: "name or number is missing" });
   }
 
-  const matchingObjects = persons.filter(
+  /*const matchingObjects = persons.filter(
     (obj) => obj["name"].toLowerCase() === body.name.toLowerCase()
   );
 
@@ -101,6 +101,16 @@ app.post("/api/persons", (request, response) => {
   persons = persons.concat(person);
 
   response.json(person);
+  */
+
+  const person = new Person({
+    name: body.name,
+    number: body.number,
+  });
+
+  person.save().then((savedPerson) => {
+    response.json(savedPerson);
+  });
 });
 
 const PORT = process.env.PORT || 3001;
